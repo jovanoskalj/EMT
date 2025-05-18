@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:17.4
+    restart: always
+    environment:
+      POSTGRES_USER: emt
+      POSTGRES_PASSWORD: emt
+      POSTGRES_DB: accommodation_db
+    volumes:
+      - /Users/Elence/Desktop/Lab1-EMT/views.sql:/docker-entrypoint-initdb.d/views.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./views.sql:/docker-entrypoint-initdb.d/views.sql
+    ports:
+      - "2345:5432"
+
+volumes:
+  pgdata:
